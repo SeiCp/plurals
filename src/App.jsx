@@ -1,43 +1,23 @@
-import './styles/globals.css';
-import './styles/App.scss';
+import { Routes, Route } from 'react-router-dom'
+import Header from './components/layout/Header.jsx'
+import Home from './pages/Home.jsx'
+import ServicesPage from './pages/ServicesPage.jsx'
+import ContactPage from './pages/ContactPage.jsx'
 
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
-
-import About from './components/home/About';
-import Services from './components/home/Services';
-import Impact from './components/home/Impact';
-import CallToAction from './components/home/CallToAction';
-import ContactSection from './components/contact/ContactSection';
-
-function App() {
+export default function App() {
   return (
     <>
       <Header />
-      <main>
-        <section id="about">
-          <About />
-        </section>
-
-        <section id="services">
-          <Services />
-        </section>
-
-        <section id="impact">
-          <Impact />
-        </section>
-
-        <section id="cta">
-          <CallToAction />
-        </section>
-
-        <section id="contact">
-          <ContactSection />
-        </section>
-      </main>
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/servicios" element={<ServicesPage />} />
+        <Route path="/contacto" element={<ContactPage />} />
+      </Routes>
     </>
-  );
+  )
 }
 
-export default App;
+
+
+
+

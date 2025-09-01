@@ -1,0 +1,100 @@
+@use './variables' as *;
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: saturate(1.1) blur(6px);
+  background: color-mix(in srgb, $beige 85%, $white 15%);
+  border-bottom: 1px solid rgba(0, 0, 0, .06);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .75rem 0;
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    /* sin subrayado en el logo */
+  }
+
+  /* LOGO — tamaño único, sin duplicados */
+  &__logo {
+    height: 54px;
+    /* ajusta si quieres 50–60 */
+    width: auto;
+    display: block;
+  }
+
+  @media (max-width: $bp-sm) {
+    .header__logo {
+      height: 40px;
+    }
+
+    /* más pequeño en móvil */
+  }
+
+  &__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .55rem .8rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, .08);
+    background: transparent;
+    cursor: pointer;
+
+    @media (min-width:$bp-md) {
+      display: none;
+    }
+  }
+
+  &__nav {
+    display: none;
+
+    @media (min-width:$bp-md) {
+      display: flex;
+      gap: .5rem;
+    }
+  }
+
+  &__nav[data-open] {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1rem;
+    background: $beige;
+    box-shadow: $shadow-soft;
+    border-top: 1px solid rgba(0, 0, 0, .06);
+  }
+
+  &__link {
+    text-decoration: none;
+    /* sin subrayado en menú */
+    padding: .55rem .8rem;
+    border-radius: 12px;
+    color: $slate;
+    font-weight: 600;
+
+    &:hover {
+      background: $neutral;
+    }
+
+    &.active {
+      background: $mist;
+    }
+  }
+
+  &__cta {
+    background: $coral;
+    color: $white;
+  }
+}

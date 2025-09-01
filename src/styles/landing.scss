@@ -1,0 +1,92 @@
+@use './variables' as *;
+
+/* alto del header sticky (ajústalo si cambias el header) */
+$header-h: 64px;
+
+.hero {
+    position: relative;
+
+    /* ocupa todo el alto visible menos el header */
+    min-height: calc(100vh - $header-h);
+
+    /* fondo + encuadre */
+    background: url('../assets/ManosHero.png') 65% center / cover no-repeat;
+
+    /* centrado del contenido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* hueco interno para no chocar con el header */
+    padding-bottom: clamp(24px, 4vh, 56px);
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg,
+                rgba(46, 64, 73, .52) 0%,
+                rgba(46, 64, 73, .46) 45%,
+                rgba(46, 64, 73, .38) 100%);
+    }
+
+    &__content {
+        position: relative;
+        z-index: 1;
+        color: $white;
+        text-align: center;
+        width: min(100% - 2rem, 820px);
+        padding: 2rem 1rem;
+        transform: translateY(260px);
+    }
+
+    h1 {
+        font-family: $font-primary;
+        font-weight: 400;
+        line-height: 1.05;
+        letter-spacing: .2px;
+        font-size: clamp(2rem, 5vw, 3.1rem);
+        margin: 0 0 1rem;
+        text-wrap: balance;
+    }
+
+    p {
+        font-family: $font-secondary;
+        font-size: clamp(1rem, 1.6vw, 1.2rem);
+        margin: 0 0 1.3rem;
+        opacity: .97;
+    }
+
+    &__actions {
+        display: inline-flex;
+        gap: .8rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .btn--ghost {
+        background: transparent;
+        color: $white;
+        border: 1px solid rgba(255, 255, 255, .65);
+
+        &:hover {
+            border-color: rgba(255, 255, 255, .9);
+        }
+    }
+
+    /* --- responsive bien anidado (ojo a las llaves) --- */
+    @media (max-width: $bp-md) {
+        background-position: 70% center;
+    }
+
+    @media (max-width: $bp-sm) {
+        background-position: 72% center;
+
+        h1 {
+            font-size: clamp(1.9rem, 7vw, 2.4rem);
+        }
+
+        .btn {
+            padding: .75rem 1rem;
+        }
+    }
+}

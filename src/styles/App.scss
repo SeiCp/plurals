@@ -1,4 +1,11 @@
 @use './variables' as *;
+/* src/styles/App.scss */
+@import './variables.scss';
+@import './globals.scss';
+@import './header.scss';
+@import './footer.scss';
+@import './landing.scss'; // aquí entran los estilos de la home (Impact, CTA, etc.)
+@import './impact.scss';
 
 * {
   box-sizing: border-box;

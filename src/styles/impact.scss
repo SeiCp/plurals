@@ -1,0 +1,49 @@
+/* src/styles/impact.scss */
+.beliefs {
+    padding: 4rem 1.5rem;
+    text-align: center;
+
+    &__title {
+        font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+        margin-bottom: 2rem;
+        color: $slate;
+    }
+
+    &__grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    &__card {
+        background: $beige;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
+        text-align: left;
+        transition: transform .25s, box-shadow .25s;
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .10);
+        }
+
+        &--beige {
+            background: $beige;
+        }
+
+        &--turquoise {
+            background: $turq;
+        }
+
+        &--gray {
+            background: $neutral;
+        }
+    }
+
+    &__icon {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 1rem;
+    }
+}

@@ -8,18 +8,41 @@
     padding-block: clamp(14px, 2vw, 24px) clamp(28px, 4vw, 48px);
 }
 
-/* Headings: solo márgenes; la tipografía hereda de los H2/H3 globales */
+/* === Encabezado como “Quiénes somos” === */
+.services__header {
+    text-align: center;
+    margin: 0 0 clamp(24px, 5vw, 40px);
+}
+
+.services__title {
+    color: v.$slate;
+    font-family: v.$font-secondary; // igual que "Quiénes somos"
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    margin: 0 0 .5rem;
+}
+
+
+/* Reaprovechamos la lead con el mismo aire y centrada */
+.svc__lead {
+    font-family: v.$font-secondary; // igual que "Quiénes somos"
+    color: rgba(v.$slate, 0.9);
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    font-weight: 400;
+    max-width: 60ch;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+
+/* Headings dentro de bloques */
 .svc-block>h2 {
     margin: 0 0 .35rem;
 }
 
 .svc-block>h3 {
     margin: clamp(10px, 1.6vw, 14px) 0 clamp(12px, 2vw, 18px);
-}
-
-.svc__lead {
-    color: color-mix(in srgb, v.$slate 70%, #fff 30%);
-    margin: 0 0 clamp(16px, 2.4vw, 22px);
 }
 
 /* Banners */
@@ -54,13 +77,13 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-@media (max-width:980px) {
+@media (max-width: 980px) {
     .svc__grid--3 {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width:720px) {
+@media (max-width: 720px) {
 
     .svc__grid--2,
     .svc__grid--3 {
@@ -162,12 +185,9 @@
 
 /* Anclas con header fijo */
 #org,
-#empresa {
-    scroll-margin-top: 96px;
-}
-
+#empresa,
 .anchor {
     scroll-margin-top: 96px;
 }
 
-/* ajusta 96px a la altura real del header */
+/* ajusta a la altura real del header */

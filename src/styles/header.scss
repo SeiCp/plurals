@@ -1,5 +1,6 @@
-@use './variables' as *;
+@use './globals.scss' as *;
 
+/* Wrapper sticky con fondo translúcido */
 .site-header {
   position: sticky;
   top: 0;
@@ -9,6 +10,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, .06);
 }
 
+/* Barra */
 .header {
   display: flex;
   align-items: center;
@@ -19,25 +21,27 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    /* sin subrayado en el logo */
   }
 
-  /* LOGO — tamaño único, sin duplicados */
-  &__logo {
-    height: 54px;
-    /* ajusta si quieres 50–60 */
+  /* LOGO */
+  .header__logo {
+    height: 40px;
     width: auto;
-    display: block;
   }
 
-  @media (max-width: $bp-sm) {
+  @media (min-width: 640px) {
     .header__logo {
-      height: 40px;
+      height: 48px;
     }
-
-    /* más pequeño en móvil */
   }
 
+  @media (min-width: 1024px) {
+    .header__logo {
+      height: 56px;
+    }
+  }
+
+  /* Botón hamburguesa (solo móvil) */
   &__toggle {
     display: inline-flex;
     align-items: center;
@@ -48,20 +52,23 @@
     background: transparent;
     cursor: pointer;
 
-    @media (min-width:$bp-md) {
+    @media (min-width: $bp-md) {
       display: none;
     }
   }
 
+  /* NAV: visible en tablet/desktop, oculto en móvil */
   &__nav {
     display: none;
+    gap: .5rem;
 
-    @media (min-width:$bp-md) {
+    @media (min-width: $bp-md) {
       display: flex;
-      gap: .5rem;
+      align-items: center;
     }
   }
 
+  /* NAV abierto en móvil (overlay) */
   &__nav[data-open] {
     position: fixed;
     left: 0;
@@ -74,27 +81,57 @@
     background: $beige;
     box-shadow: $shadow-soft;
     border-top: 1px solid rgba(0, 0, 0, .06);
+
+    @media (min-width: $bp-md) {
+      position: static;
+      flex-direction: row;
+      padding: 0;
+      box-shadow: none;
+      border: 0;
+    }
   }
 
+  /* LINKS */
   &__link {
     text-decoration: none;
-    /* sin subrayado en menú */
     padding: .55rem .8rem;
     border-radius: 12px;
     color: $slate;
     font-weight: 600;
+    transition: color .25s ease, background-color .25s ease, box-shadow .25s ease;
 
+    /* hover: turquesa + leve fondo */
     &:hover {
-      background: $neutral;
+      color: $turq;
+      background: color-mix(in srgb, $turq 12%, $neutral 88%);
     }
 
+    /* foco accesible */
+    &:focus-visible {
+      outline: 0;
+      box-shadow: 0 0 0 2px color-mix(in srgb, $turq 70%, $white 30%);
+      background: color-mix(in srgb, $turq 10%, $neutral 90%);
+    }
+
+    /* activo: mismo turquesa */
     &.active {
-      background: $mist;
+      color: $turq;
+      background: color-mix(in srgb, $turq 16%, $neutral 84%);
     }
   }
 
+  /* CTA */
   &__cta {
     background: $coral;
     color: $white;
+
+    &:hover {
+      filter: brightness(1.05);
+    }
+
+    &:focus-visible {
+      outline: 0;
+      box-shadow: 0 0 0 2px color-mix(in srgb, $coral 70%, $white 30%);
+    }
   }
 }

@@ -1,52 +1,69 @@
+// src/pages/ServicesPage.jsx
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 export default function ServicesPage() {
-    return (
-      <main className="section">
-        <div className="container">
-          <h1>Servicios</h1>
-          <p style={{maxWidth: 720}}>
-            Alineamos impacto social, estrategia y alianzas. Trabajamos con organizaciones,
-            cooperantes y empresas para convertir la intención en procesos, resultados y evidencia.
-          </p>
-  
-          <div style={{display:'grid', gap:'1rem', marginTop:'1.25rem'}}>
-            <section className="card">
-              <h2>Fortalecimiento organizacional</h2>
-              <ul>
-                <li>Diagnóstico y hoja de ruta</li>
-                <li>Gobernanza, roles y procesos</li>
-                <li>Formación y acompañamiento</li>
-              </ul>
-            </section>
-  
-            <section className="card">
-              <h2>Alianzas estratégicas</h2>
-              <ul>
-                <li>Mapa de aliados y propuesta de valor</li>
-                <li>Diseño y coordinación de alianzas</li>
-                <li>Evaluación y aprendizaje</li>
-              </ul>
-            </section>
-  
-            <section className="card">
-              <h2>Comunicación para el desarrollo</h2>
-              <ul>
-                <li>Estrategia y narrativa</li>
-                <li>Contenidos y campañas</li>
-                <li>Prensa y reporting de impacto</li>
-              </ul>
-            </section>
-  
-            <section className="card">
-              <h2>Innovación</h2>
-              <ul>
-                <li>Laboratorios y prototipado</li>
-                <li>Medición y escalado</li>
-                <li>Gestión del cambio</li>
-              </ul>
-            </section>
-          </div>
-        </div>
-      </main>
-    )
-  }
+  const { hash } = useLocation();
+
+  // Si llega con hash (#empresa, #org, etc.), hacemos scroll al inicio del bloque
+  useEffect(() => {
+    if (!hash) return;
+    const el = document.querySelector(hash);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [hash]);
+
+  return (
+    <main className="services">
+      {/* Ancla explícita al inicio (por si algún día usas #top) */}
+      <section id="top" className="anchor">
+        <h2 className="sr-only">Inicio de Sumamos</h2>
+      </section>
+
+      {/* Intro arriba */}
+      <section className="services__intro">
+        <h1>Sumamos</h1>
+        <p>Elige tu foco y seguimos.</p>
+      </section>
+
+      {/* ARRIBA: Cooperantes / organizaciones (destino de “Soy cooperante”) */}
+      <section id="org" className="anchor">
+        <h2 className="sr-only">Organizaciones y cooperantes</h2>
+      </section>
+
+      {/* Aquí iría vuestro contenido real para cooperantes/organizaciones */}
+      {/* ... */}
+
+      {/* ABAJO: Empresas (destino de “Soy empresa”) */}
+      <section id="empresa" className="anchor">
+        <h2 className="sr-only">Empresas</h2>
+      </section>
+
+      {/* Aquí iría vuestro contenido real para empresas */}
+      {/* ... */}
+
+      {/* Otras anclas usadas por Impact.jsx para no romper nada */}
+      <section id="organizaciones" className="anchor">
+        <h2 className="sr-only">Organizaciones</h2>
+      </section>
+
+      <section id="estrategia" className="anchor">
+        <h2 className="sr-only">Estrategia</h2>
+      </section>
+
+      <section id="innovacion" className="anchor">
+        <h2 className="sr-only">Innovación</h2>
+      </section>
+    </main>
+  );
+}
+
+
+
+
+
+
+
+
+
+
   

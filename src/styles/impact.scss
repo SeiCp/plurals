@@ -1,49 +1,139 @@
-/* src/styles/impact.scss */
+@use './globals.scss' as *;
+
+/* ----- sección ----- */
 .beliefs {
-    padding: 4rem 1.5rem;
+    padding: clamp(2rem, 4vw, 3.5rem) 1rem clamp(2.5rem, 5vw, 4rem);
+    background: $neutral;
+    margin-top: clamp(1rem, 3vw, 2rem);
+}
+
+.beliefs__inner {
+    width: min(100% - 2rem, 1200px);
+    margin: 0 auto;
+}
+
+.beliefs__title {
+    font-family: $font-heading;
+    font-weight: $fw-bold;
+    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+    color: $slate;
+    margin: 0 0 clamp(1rem, 2vw, 1.25rem);
+}
+
+/* ----- grid ----- */
+.beliefs__grid {
+    display: grid;
+    gap: clamp(.9rem, 2vw, 1.25rem);
+    grid-template-columns: 1fr;
+
+    @media (min-width: $bp-md) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ----- tarjeta con foto ----- */
+.bcard {
+    position: relative;
+    display: grid;
+    grid-template-areas: "stack";
+    border-radius: 24px;
+    overflow: hidden;
+    min-height: clamp(260px, 36vw, 360px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .08);
+    text-decoration: none;
+    isolation: isolate;
+
+    &:hover .bcard__img {
+        transform: scale(1.06);
+    }
+
+    &:hover .bcard__label {
+        opacity: 0;
+        transform: translateY(6px) scale(.98);
+    }
+
+    &:hover .bcard__hover {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* imagen */
+.bcard__img {
+    grid-area: stack;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1);
+    transition: transform .45s ease;
+}
+
+/* velo para lectura */
+.bcard__shade {
+    grid-area: stack;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, .12) 0%, rgba(0, 0, 0, .45) 100%);
+    z-index: 0;
+}
+
+/* palabra corta (por defecto) */
+.bcard__label {
+    grid-area: stack;
+    place-self: center;
+    color: #fff;
+    font-family: $font-heading;
+    font-weight: $fw-bold;
+    letter-spacing: .4px;
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .35);
+    transition: opacity .25s ease, transform .25s ease;
+    z-index: 2;
+}
+
+/* overlay con la frase completa */
+.bcard__hover {
+    grid-area: stack;
+    display: grid;
+    place-content: center;
     text-align: center;
+    padding: 1.2rem;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .25s ease, transform .25s ease;
+    z-index: 3;
+}
 
-    &__title {
-        font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-        margin-bottom: 2rem;
-        color: $slate;
+.bcard__desc {
+    margin: 0;
+    font-family: $font-primary;
+    font-size: clamp(1rem, 1.05vw, 1.1rem);
+    line-height: 1.5;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+}
+
+/* tinte distinto por tarjeta */
+.bcard--1 .bcard__hover {
+    background: rgba($slate, .82);
+}
+
+.bcard--2 .bcard__hover {
+    background: rgba($turq, .82);
+}
+
+.bcard--3 .bcard__hover {
+    background: rgba($coral, .82);
+}
+
+/* en pantallas táctiles mostramos directamente la frase */
+@media (hover: none) {
+    .bcard__hover {
+        opacity: 1;
+        transform: none;
     }
 
-    &__grid {
-        display: grid;
-        gap: 1.5rem;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    }
-
-    &__card {
-        background: $beige;
-        padding: 2rem;
-        border-radius: 16px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
-        text-align: left;
-        transition: transform .25s, box-shadow .25s;
-
-        &:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, .10);
-        }
-
-        &--beige {
-            background: $beige;
-        }
-
-        &--turquoise {
-            background: $turq;
-        }
-
-        &--gray {
-            background: $neutral;
-        }
-    }
-
-    &__icon {
-        width: 40px;
-        height: 40px;
-        margin-bottom: 1rem;
+    .bcard__label {
+        opacity: 0;
     }
 }

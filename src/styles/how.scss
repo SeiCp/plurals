@@ -1,0 +1,97 @@
+@use "./variables.scss" as v;
+
+/* Scroll suave para #org y #empresa */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===== Sección ===== */
+.how {
+    --maxw: 1200px;
+    width: min(var(--maxw), 100% - 2rem);
+    margin: clamp(18px, 4vw, 56px) auto;
+    padding: clamp(12px, 2.4vw, 22px) 0;
+}
+
+/* Franja de fondo simple (misma que te gustó) */
+.how--tint {
+    background: #ECF1F0;
+    /* secundario de tu paleta */
+    border-radius: 24px;
+    padding: clamp(16px, 3vw, 28px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .04);
+}
+
+/* ===== Títulos ===== */
+/* No definimos tipografía aquí para que el H2 herede EXACTO como en “En qué creemos”. */
+.how__title {
+    margin: 0 0 .35rem;
+}
+
+/* Subtítulo */
+.how__lead {
+    color: color-mix(in srgb, v.$slate 70%, #fff 30%);
+    margin: 0 0 clamp(16px, 2.6vw, 26px);
+    font-size: clamp(1rem, 2.2vw, 1.15rem);
+}
+
+/* ===== Grid ===== */
+.how__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, 2.8vw, 26px);
+
+    @media (max-width: 720px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.how__tile {
+    text-decoration: none;
+}
+
+/* ===== Tile / Imagen ===== */
+.how__media {
+    margin: 0;
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
+    transition: transform .35s ease, box-shadow .35s ease;
+
+    img {
+        width: 100%;
+        height: clamp(260px, 38vw, 420px);
+        display: block;
+        object-fit: cover;
+        transform: scale(1);
+        transition: transform .45s ease;
+    }
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 36px rgba(0, 0, 0, .16);
+
+        img {
+            transform: scale(1.04);
+        }
+    }
+}
+
+/* ===== Caption ===== */
+.how__caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: clamp(14px, 3vw, 22px);
+    font-weight: 900;
+    font-family: v.$font-primary;
+    color: #fff;
+    background: linear-gradient(180deg,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, .5) 60%,
+            rgba(0, 0, 0, .7) 100%);
+    font-size: clamp(1.15rem, 2.8vw, 1.6rem);
+    line-height: 1.1;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .35);
+    letter-spacing: .2px;
+}

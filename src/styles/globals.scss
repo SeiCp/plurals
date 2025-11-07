@@ -1,10 +1,61 @@
-/* src/styles/globals.scss */
-a {
-    text-decoration: none;
-    color: inherit; // o tu color de enlaces si lo prefieres
+/* ===== TOKENS GLOBALES ===== */
+
+/* Colores */
+$coral: #FF6D6D;
+$turq: #77D7D3;
+$slate: #2E4049;
+$beige: #F1EEEC;
+$neutral: #F2F2F2;
+$mist: #ECF1F0;
+$white: #ffffff;
+$black: #000000;
+
+/* Tipografías */
+$font-primary: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell,
+    "Noto Sans", "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+$font-secondary: $font-primary; // ← antes faltaba
+$font-heading: $font-primary;
+
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+/* Sombras */
+$shadow-soft: 0 4px 12px rgba($slate, .10);
+$shadow-md: 0 8px 24px rgba($slate, .14);
+$shadow-lg: 0 12px 36px rgba($slate, .18);
+
+/* Radios */
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 18px;
+
+/* Breakpoints */
+$bp-xs: 480px;
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+$bp-2xl: 1536px;
+
+/* Layout */
+$max-w: 1200px; // ancho máximo del contenedor
+
+/* scroll suave global */
+html {
+    scroll-behavior: smooth;
 }
 
-a:hover,
-a:focus {
-    text-decoration: underline; // o quítalo si no quieres subrayado nunca
+/* util para headings solo visibles a lectores de pantalla */
+.sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }

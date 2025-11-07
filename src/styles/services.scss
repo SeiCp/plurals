@@ -1,0 +1,173 @@
+@use "./variables.scss" as v;
+@use "./globals.scss" as *;
+
+.services {
+    --maxw: 1200px;
+    width: min(var(--maxw), 100% - 2rem);
+    margin-inline: auto;
+    padding-block: clamp(14px, 2vw, 24px) clamp(28px, 4vw, 48px);
+}
+
+/* Headings: solo márgenes; la tipografía hereda de los H2/H3 globales */
+.svc-block>h2 {
+    margin: 0 0 .35rem;
+}
+
+.svc-block>h3 {
+    margin: clamp(10px, 1.6vw, 14px) 0 clamp(12px, 2vw, 18px);
+}
+
+.svc__lead {
+    color: color-mix(in srgb, v.$slate 70%, #fff 30%);
+    margin: 0 0 clamp(16px, 2.4vw, 22px);
+}
+
+/* Banners */
+.svc__banner {
+    margin: 0 0 clamp(16px, 3vw, 24px);
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 22px;
+        object-fit: cover;
+        box-shadow: 0 6px 28px rgba(0, 0, 0, .10);
+    }
+}
+
+/* Grid */
+.svc__grid-wrapper {
+    position: relative;
+}
+
+.svc__grid {
+    display: grid;
+    gap: clamp(16px, 2.4vw, 22px);
+}
+
+.svc__grid--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.svc__grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width:980px) {
+    .svc__grid--3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:720px) {
+
+    .svc__grid--2,
+    .svc__grid--3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Cards */
+.svc__card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(14px, 2vw, 18px);
+    align-items: start;
+    background: #fff;
+    border-radius: 22px;
+    padding: clamp(16px, 2.6vw, 22px) clamp(18px, 3vw, 26px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .08);
+}
+
+.svc__icon {
+    width: clamp(64px, 7.2vw, 92px);
+    height: auto;
+    display: block;
+    user-select: none;
+}
+
+.svc__heading {
+    font-family: v.$font-primary;
+    font-weight: 600;
+    color: v.$slate;
+    font-size: clamp(1.05rem, 2.1vw, 1.35rem);
+    margin: 0 0 .35rem;
+}
+
+.svc__desc {
+    color: color-mix(in srgb, v.$slate 80%, #fff 20%);
+    margin: 0;
+    line-height: 1.45;
+}
+
+/* Botones */
+.btn {
+    border-radius: 999px;
+    padding: .85rem 1.35rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .12);
+}
+
+.btn--turq {
+    background: v.$turq;
+    color: #fff;
+
+    &:hover {
+        filter: brightness(1.03);
+        transform: translateY(-1px);
+        transition: transform .12s ease, filter .12s ease;
+    }
+}
+
+/* CTA */
+.svc__cta--center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    text-align: center;
+
+    .btn {
+        white-space: nowrap;
+    }
+}
+
+.svc__cta--below {
+    position: static !important;
+    transform: none !important;
+    margin: clamp(14px, 2.4vw, 22px) auto 0 !important;
+    text-align: center;
+
+    .btn {
+        white-space: nowrap;
+    }
+}
+
+/* Separación y fondo suave */
+.svc-block+.svc-block {
+    margin-top: clamp(28px, 4.6vw, 48px);
+}
+
+.svc-block--emp {
+    background: color-mix(in srgb, v.$slate 6%, #fff 94%);
+    padding: clamp(10px, 2vw, 16px);
+    border-radius: 22px;
+}
+
+/* Anclas con header fijo */
+#org,
+#empresa {
+    scroll-margin-top: 96px;
+}
+
+.anchor {
+    scroll-margin-top: 96px;
+}
+
+/* ajusta 96px a la altura real del header */

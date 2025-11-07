@@ -1,0 +1,125 @@
+/* === Qué nos diferencia (alineado al bloque “En qué creemos”) === */
+.diffHero {
+    --ink: #2e4049;
+    --accent: #77d7d3;
+    --active: #ff6d6d;
+    --bg: #f1eeec;
+    --muted: #6b7a86;
+
+    background: var(--bg);
+    color: var(--ink);
+    padding: clamp(48px, 7vw, 96px) 20px;
+
+    &__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: clamp(24px, 5vw, 64px);
+
+        @media (max-width: 960px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* IZQUIERDA: kicker + tabs en MISMA LÍNEA (baseline) */
+    &__left {
+        display: grid;
+        grid-auto-rows: min-content;
+        align-content: start;
+        gap: clamp(10px, 1.6vw, 18px);
+    }
+
+    /* Kicker/título con mismas medidas y baseline de los tabs */
+    &__kicker {
+        margin: 0;
+        text-transform: none;
+        color: var(--ink);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        font-size: clamp(28px, 2.6vw, 40px);
+        line-height: 1.1;
+        /* truco para baseline: empuja un pelín hacia abajo para coincidir con el primer tab */
+        transform: translateY(0.1em);
+    }
+
+    &__tab {
+        all: unset;
+        cursor: pointer;
+        display: block;
+        color: var(--accent);
+        font-weight: 500;
+        text-transform: capitalize;
+        font-size: clamp(36px, 5.2vw, 64px);
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        transition: color .4s ease, transform .25s ease, opacity .3s ease;
+
+        &:hover {
+            color: var(--active);
+            transform: translateX(4px);
+        }
+
+        &.is-active {
+            color: var(--active);
+            transform: translateX(6px);
+        }
+    }
+
+    /* DERECHA */
+    &__right {
+        display: grid;
+        align-content: center;
+        gap: 16px;
+        min-height: clamp(160px, 22vw, 320px);
+    }
+
+    &__text {
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(20px, 2.2vw, 26px);
+        line-height: 1.6;
+        max-width: 48ch;
+        animation: fadeIn .5s ease both;
+    }
+
+    &__nav {
+        margin-top: 12px;
+        display: flex;
+        gap: 12px;
+    }
+
+    &__arrow {
+        all: unset;
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        background: #ecf1f0;
+        font-size: 22px;
+        cursor: pointer;
+        transition: transform .15s ease, background .15s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            background: var(--accent);
+            color: #fff;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}

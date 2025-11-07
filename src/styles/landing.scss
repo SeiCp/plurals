@@ -1,4 +1,10 @@
-@use './variables' as *;
+@use './globals.scss' as *;
+
+.landing {
+    position: relative;
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+    z-index: 1;
+}
 
 /* alto del header sticky (ajústalo si cambias el header) */
 $header-h: 64px;
@@ -39,13 +45,17 @@ $header-h: 64px;
         transform: translateY(260px);
     }
 
+    /* título: un pelín más grande + más aire con las CTAs */
     h1 {
         font-family: $font-primary;
         font-weight: 400;
         line-height: 1.05;
         letter-spacing: .2px;
-        font-size: clamp(2rem, 5vw, 3.1rem);
-        margin: 0 0 1rem;
+        /* antes: clamp(2rem, 5vw, 3.1rem) */
+        font-size: clamp(2.3rem, 6.2vw, 3.6rem);
+        /* ↑ tamaño */
+        margin: 0 0 clamp(1.4rem, 2.6vw, 2.2rem);
+        /* ↑ separación con botones */
         text-wrap: balance;
     }
 
@@ -56,11 +66,15 @@ $header-h: 64px;
         opacity: .97;
     }
 
+    /* contenedor de CTAs: más separación y gap mayor */
     &__actions {
         display: inline-flex;
-        gap: .8rem;
+        gap: 1rem;
+        /* antes .8rem */
         flex-wrap: wrap;
         justify-content: center;
+        margin-top: clamp(1rem, 2vw, 1.8rem);
+        /* aire extra respecto al h1 */
     }
 
     .btn--ghost {
@@ -73,6 +87,66 @@ $header-h: 64px;
         }
     }
 
+    /* --- BOTONES: más grandes y SIN subrayado --- */
+    /* quita subrayado a cualquier enlace dentro del hero */
+    a,
+    a:hover,
+    a:focus {
+        text-decoration: none;
+    }
+
+    /* base para ambos botones */
+    .btn {
+        text-decoration: none;
+        /* sin subrayado */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .4rem;
+        /* antes: clamp(.95rem, 1.4vw, 1.15rem) clamp(1.35rem, 2.2vw, 1.8rem) */
+        padding: clamp(1.05rem, 1.6vw, 1.25rem) clamp(1.6rem, 2.6vw, 2rem);
+        /* ↑ tamaño */
+        font-family: $font-primary;
+        font-weight: 700;
+        /* antes: clamp(1rem, 1.2vw, 1.15rem) */
+        font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+        /* ↑ tamaño */
+        line-height: 1;
+        border-radius: 18px;
+        /* antes 16px */
+        border: 1.5px solid transparent;
+        color: $white;
+        box-shadow: $shadow-soft;
+        cursor: pointer;
+    }
+
+    /* primario coral */
+    .btn--primary {
+        background: $coral;
+        color: #fff;
+        border-color: transparent;
+
+        &:hover {
+            filter: brightness(.96);
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+    }
+
+    /* secundario (ghost) — hereda tamaño de .btn */
+    .btn--ghost {
+        background: transparent;
+        color: $white;
+        border: 1.5px solid rgba(255, 255, 255, .7);
+
+        &:hover {
+            border-color: rgba(255, 255, 255, .9);
+            background: rgba(255, 255, 255, .08);
+        }
+    }
+
     /* --- responsive bien anidado (ojo a las llaves) --- */
     @media (max-width: $bp-md) {
         background-position: 70% center;
@@ -81,12 +155,20 @@ $header-h: 64px;
     @media (max-width: $bp-sm) {
         background-position: 72% center;
 
+        /* mantiene el título un poco más grande en móvil */
         h1 {
-            font-size: clamp(1.9rem, 7vw, 2.4rem);
+            font-size: clamp(2.05rem, 7.5vw, 2.6rem);
         }
 
+        /* botones grandecitos en móvil */
         .btn {
-            padding: .75rem 1rem;
+            padding: .95rem 1.25rem;
+            font-size: 1.05rem;
+        }
+
+        /* y un poco de margen extra respecto al título */
+        &__actions {
+            margin-top: 1.25rem;
         }
     }
 }

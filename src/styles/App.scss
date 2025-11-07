@@ -1,11 +1,15 @@
-@use './variables' as *;
-/* src/styles/App.scss */
-@import './variables.scss';
-@import './globals.scss';
-@import './header.scss';
-@import './footer.scss';
-@import './landing.scss'; // aquí entran los estilos de la home (Impact, CTA, etc.)
-@import './impact.scss';
+@use './globals.scss' as *;
+@use './header.scss';
+@use './footer.scss';
+@use './landing.scss';
+@use './impact.scss';
+@use './how.scss';
+@use './diff';
+@use './cta';
+@use "./legal";
+@use './services.scss';
+
+
 
 * {
   box-sizing: border-box;
@@ -45,6 +49,12 @@ body {
   color: $white;
   font-weight: 600;
   box-shadow: $shadow-soft;
+}
+
+.btn--ghost {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, .12);
+  color: $slate;
 }
 
 .btn--ghost {

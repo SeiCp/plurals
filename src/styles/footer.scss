@@ -1,21 +1,175 @@
+@use "./variables.scss" as v;
+
+/* ===== Footer ===== */
 .footer {
-  background-color: var(--azul-gris);
-  color: white;
-  padding: 2rem;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  background: v.$slate;
+  color: color-mix(in srgb, #fff 90%, v.$slate 10%);
+  padding: clamp(18px, 3vw, 32px) 0 0;
 }
 
-.footer__info,
+.footer__container {
+  --maxw: 1200px;
+  width: min(var(--maxw), 100% - 2rem);
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(16px, 3vw, 28px);
+}
+
+/* ===== Marca ===== */
+.footer__brand {
+  display: grid;
+  gap: 12px;
+  max-width: 640px;
+}
+
+/* Logo (sin wrapper) */
+.footer__logo {
+  display: block;
+  height: 52px;
+  /* móvil */
+  width: auto;
+}
+
+@media (min-width: 640px) {
+  .footer__logo {
+    height: 64px;
+  }
+}
+
+/* tablet */
+@media (min-width: 1024px) {
+  .footer__logo {
+    height: 76px;
+  }
+}
+
+/* desktop */
+
+.footer__tagline {
+  margin: 0;
+  color: color-mix(in srgb, #fff 80%, v.$slate 20%);
+}
+
+/* ===== Redes ===== */
 .footer__social {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  gap: 10px;
+  margin-top: 6px;
+
+  a {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: color-mix(in srgb, #fff 6%, v.$slate 94%);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+    transition: transform .15s ease, filter .15s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    svg {
+      font-size: 20px;
+    }
+  }
 }
 
-.footer__social a {
-  color: white;
-  font-size: 1.2rem;
+/* ===== Panel principal: columnas + foto ===== */
+.footer__panel {
+  margin-top: clamp(8px, 2vw, 16px);
+  background: color-mix(in srgb, v.$slate 88%, #fff 12%);
+  border-radius: 24px;
+  padding: clamp(16px, 2.6vw, 24px);
+  display: grid;
+  grid-template-columns: 1fr minmax(220px, 30%);
+  gap: clamp(12px, 2vw, 20px);
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Columnas de navegación */
+.footer__cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 22px);
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.footer__heading {
+  margin: 0 0 .35rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.footer__col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: .35rem;
+}
+
+.footer__col a {
+  color: color-mix(in srgb, #fff 85%, v.$slate 15%);
   text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ===== Contacto (icono + texto juntos) ===== */
+.footer__contact {
+  display: grid;
+  gap: .35rem;
+}
+
+.footer__contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  /* icono más cerca */
+  color: color-mix(in srgb, #fff 85%, v.$slate 15%);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.footer__contact a svg {
+  font-size: 18px;
+  transform: translateY(1px);
+}
+
+/* ===== Foto lateral ===== */
+.footer__photo {
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: clamp(140px, 22vw, 240px);
+    object-fit: cover;
+    display: block;
+  }
+}
+
+/* ===== Línea inferior ===== */
+.footer__bottom {
+  margin-top: clamp(14px, 2.4vw, 22px);
+  padding: clamp(12px, 2vw, 16px) 0;
+  border-top: 1px solid color-mix(in srgb, #fff 14%, v.$slate 86%);
+  text-align: center;
+  color: color-mix(in srgb, #fff 75%, v.$slate 25%);
 }

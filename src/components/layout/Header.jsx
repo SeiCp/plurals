@@ -1,37 +1,41 @@
-import { useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import '../../styles/header.scss'
-import logo from '../../assets/PLURALS_LogoInicio.png'
-
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import "../../styles/header.scss";
+import logo from "../../assets/PLURALS_Logoinicio.png";
 
 export default function Header() {
-  const [open, setOpen] = useState(false)
-  const close = () => setOpen(false)
+  const [open, setOpen] = useState(false);
+  const toggle = () => setOpen(v => !v);
+  const close = () => setOpen(false);
 
   return (
     <header className="site-header">
-      <div className="container header">
+      <div className="header">
         <Link to="/" className="header__brand" onClick={close}>
-        <img src={logo} alt="Plurals – Consultoría Social" className="header__logo" />
+          <img src={logo} alt="Plurals · Consultoría social" className="header__logo" />
         </Link>
 
         <button
           className="header__toggle"
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
-          aria-controls="mainmenu"
-          onClick={() => setOpen(o => !o)}
+          onClick={toggle}
         >
-          Menú
+          <span aria-hidden="true">☰</span>
         </button>
 
-        <nav id="mainmenu" className="header__nav" data-open={open || undefined}>
-          <NavLink to="/" onClick={close} className="header__link">Inicio</NavLink>
-          <NavLink to="/servicios" onClick={close} className="header__link">Servicios</NavLink>
-          <NavLink to="/contacto" onClick={close} className="header__link header__cta">Hablemos</NavLink>
+        {/* En móvil se muestra solo cuando open = true (data-open) */}
+        <nav className="header__nav" {...(open ? { "data-open": "" } : {})} aria-label="Principal">
+        <NavLink to="/about" className="header__link" onClick={close}>Quiénes somos</NavLink>
+        <NavLink to="/servicios" className="header__link" onClick={close}>Sumamos</NavLink>
+        <NavLink to="/contacto" className="header__link header__cta" onClick={close}>Hablemos</NavLink>
         </nav>
       </div>
     </header>
-  )
+  );
 }
+
+
+
 
 

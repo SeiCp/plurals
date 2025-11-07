@@ -5,13 +5,10 @@ export default function Landing() {
     <section className="hero">
       <div className="hero__overlay">
         <div className="container hero__content">
-          <h1>Alineamos impacto social, estrategia y alianzas</h1>
-          <p>
-            Trabajamos con organizaciones sociales, cooperantes y empresas que quieren hacer las cosas bien y demostrarlo.
-          </p>
+          <h1>Soluciones estratégicas para causas colectivas</h1>
           <div className="hero__actions">
             <Link className="btn" to="/contacto">Hablemos</Link>
-            <Link className="btn btn--ghost" to="/servicios">Ver servicios</Link>
+            <Link className="btn btn--ghost" to="/servicios">Descubre lo que hacemos</Link>
           </div>
         </div>
       </div>

@@ -15,7 +15,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .75rem 0;
+  padding: .75rem 1.25rem; // antes 0 → ahora hay espacio horizontal
+
 
   &__brand {
     display: flex;

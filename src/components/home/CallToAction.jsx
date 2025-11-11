@@ -1,26 +1,49 @@
-import { Link } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import "../../styles/cta.scss";
 
 export default function CallToAction() {
-  return (
-    <section className="cta" aria-labelledby="cta-title">
-      <div className="cta__inner">
-        <div className="cta__word" aria-hidden="true">Impacto</div>
+  const ref = useRef(null);
 
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      ref.current?.classList.add("is-in");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-in");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section className="cta" ref={ref}>
+      <div className="cta__inner">
+        <div className="cta__word">Impacto</div>
         <div className="cta__content">
-          <h2 id="cta-title" className="cta__title">
-            ¿Quieres potenciar tu impacto?
-          </h2>
+          <h2 className="cta__title">¿Quieres potenciar tu impacto?</h2>
           <p className="cta__subtitle">
             Te ayudamos a diseñar estrategias que sumen y multipliquen.
           </p>
-
           <div className="cta__actions">
-            <Link className="cta__btn" to="/contacto">Hablemos</Link>
+            <a className="cta__btn" href="/contacto">Hablemos</a>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
 
 

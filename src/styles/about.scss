@@ -66,6 +66,22 @@ $neutral: #F7F7F6;
     margin: clamp(1.5rem, 4vw, 3rem) auto 3.25rem;
 }
 
+.about__copy :where(p, li) {
+    line-height: 1.7;
+}
+
+.about__copy p {
+    margin: 0 0 .9rem;
+    color: $slate;
+}
+
+/* Un pelín más grande en pantallas medias+ para que respire */
+@media (min-width: 768px) {
+    .about__copy p {
+        font-size: 1.0625rem; // ~17px
+    }
+}
+
 .about__media img {
     width: 100%;
     border-radius: 1.1rem;
@@ -91,9 +107,11 @@ $neutral: #F7F7F6;
 
     img {
         width: 100%;
-        max-width: 350px; // tamaño uniforme en desktop
-        height: 350px; // fuerza proporción cuadrada
-        object-fit: cover; // mantiene la proporción sin deformar
+        max-width: 350px;
+        /* tamaño uniforme en desktop */
+        height: 350px;
+        /* fuerza proporción cuadrada */
+        object-fit: cover;
         border-radius: 1.2rem;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         transition: transform 0.6s ease, box-shadow 0.6s ease;
@@ -115,7 +133,6 @@ $neutral: #F7F7F6;
         }
     }
 }
-
 
 /* ---- Equipo ---- */
 .about__team {
@@ -236,7 +253,6 @@ $neutral: #F7F7F6;
     color: darken($turquoise, 18%);
 }
 
-
 .founder__text {
     line-height: 1.7;
     color: $slate;
@@ -307,7 +323,6 @@ $neutral: #F7F7F6;
     }
 }
 
-
 .about__lede {
     font-size: 1.05rem;
     font-weight: 800;
@@ -322,14 +337,14 @@ $neutral: #F7F7F6;
 .about__paragraph {
     margin: 0 0 1rem 0;
     color: $slate;
-    line-height: 1.7; // mismo interlineado que las fundadoras
+    line-height: 1.7;
+    /* mismo interlineado que las fundadoras */
     font-size: 1rem;
 }
 
 .about__collabsText {
     max-width: 60ch;
 }
-
 
 .about__note {
     background: $beige;

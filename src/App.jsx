@@ -8,6 +8,8 @@ import Home from "./pages/Home.jsx";
 import ServicesPage from "./pages/ServicesPage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
+import Gracias from "./pages/Gracias";
+
 
 /* Páginas legales */
 import LegalNotice from "./pages/LegalNotice.jsx";
@@ -25,6 +27,7 @@ export default function App() {
         <Route path="/servicios" element={<ServicesPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contacto" element={<ContactPage />} />
+        <Route path="/gracias" element={<Gracias />} />
 
         {/* Rutas legales */}
         <Route path="/aviso-legal" element={<LegalNotice />} />

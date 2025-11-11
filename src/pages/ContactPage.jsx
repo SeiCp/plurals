@@ -68,61 +68,57 @@ export default function ContactPage() {
 
             {/* Netlify Forms */}
             <form
-              className="contact__form"
-              onSubmit={handleSubmit}
-              name="contacto"
-              method="POST"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
+            className="contact__form"
+            name="contacto"
+            method="POST"
+            action="/gracias"                // ← redirección tras enviar
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
             >
-              {/* Requisito de Netlify: este hidden con el nombre del formulario */}
-              <input type="hidden" name="form-name" value="contacto" />
+            {/* Requisito Netlify */}
+            <input type="hidden" name="form-name" value="contacto" />
 
-              {/* Honeypot (oculto) */}
-              <p className="visually-hidden" aria-hidden="true">
-                <label>
-                  Si eres humano, deja este campo vacío:{" "}
-                  <input name="bot-field" />
-                </label>
-              </p>
+            {/* Honeypot */}
+            <p className="visually-hidden" aria-hidden="true">
+             <label>Si eres humano, deja este campo vacío: <input name="bot-field" /></label>
+            </p>
 
-              <div className="contact__row">
-                <label>
-                  Nombre
-                  <input name="nombre" type="text" required />
-                </label>
-                <label>
-                  Email
-                  <input name="email" type="email" required />
-                </label>
-              </div>
+          <div className="contact__row">
+          <label>
+            Nombre
+            <input name="nombre" type="text" required />
+          </label>
+          <label>
+          Email
+          <input name="email" type="email" required />
+          </label>
+          </div>
 
-              <div className="contact__row">
-                <label className="contact__full">
-                  Organización (opcional)
-                  <input name="organizacion" type="text" />
-                </label>
-              </div>
+          <div className="contact__row">
+          <label className="contact__full">
+          Organización (opcional)
+          <input name="organizacion" type="text" />
+          </label>
+          </div>
 
-              <label className="contact__full">
-                Mensaje
-                <textarea name="mensaje" rows="6" required />
-              </label>
+          <label className="contact__full">
+           Mensaje
+          <textarea name="mensaje" rows="6" required />
+          </label>
 
-              <label className="contact__consent">
-                <input type="checkbox" name="consentimiento" required /> Acepto que uséis mis datos para responder a este contacto.
-              </label>
+          <label className="contact__consent">
+          <input type="checkbox" name="consentimiento" required /> Acepto que uséis mis datos para responder a este contacto.
+          </label>
 
-              <div className="contact__actions">
-                <button className="btn btn--primary" type="submit" disabled={status === "loading"}>
-                  {status === "loading" ? "Enviando…" : "Enviar"}
-                </button>
-                {/* Alternativa directa por email */}
-                <a className="btn btn--ghost" href="mailto:contacto@plurals-consulting.com">
-                  Prefiero escribir un email
-                </a>
-              </div>
-            </form>
+          <div className="contact__actions">
+          <button className="btn btn--coral" type="submit">Enviar</button>
+          <a className="btn--ghost-line" href="mailto:contacto@plurals-consulting.com">
+          Prefiero escribir un email
+          </a>
+          </div>
+        </form>
+
+
           </div>
         </div>
       </div>

@@ -25,7 +25,6 @@
         }
     }
 
-    /* IZQUIERDA: kicker + tabs en MISMA LÍNEA (baseline) */
     &__left {
         display: grid;
         grid-auto-rows: min-content;
@@ -33,7 +32,6 @@
         gap: clamp(10px, 1.6vw, 18px);
     }
 
-    /* Kicker/título con mismas medidas y baseline de los tabs */
     &__kicker {
         margin: 0;
         text-transform: none;
@@ -42,7 +40,6 @@
         letter-spacing: -0.01em;
         font-size: clamp(28px, 2.6vw, 40px);
         line-height: 1.1;
-        /* truco para baseline: empuja un pelín hacia abajo para coincidir con el primer tab */
         transform: translateY(0.1em);
     }
 
@@ -51,7 +48,7 @@
         cursor: pointer;
         display: block;
         color: var(--accent);
-        font-weight: 500;
+        font-weight: 600;
         text-transform: capitalize;
         font-size: clamp(36px, 5.2vw, 64px);
         line-height: 1.1;
@@ -69,7 +66,20 @@
         }
     }
 
-    /* DERECHA */
+    /* Tercer título “Resolvemos” en azul oscuro con mismo grosor */
+    &__tab:nth-child(3) {
+        color: var(--ink);
+        font-weight: 600;
+
+        &:hover {
+            color: var(--active);
+        }
+
+        &.is-active {
+            color: var(--active);
+        }
+    }
+
     &__right {
         display: grid;
         align-content: center;

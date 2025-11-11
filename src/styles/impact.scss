@@ -2,10 +2,21 @@
 
 /* ----- sección ----- */
 .beliefs {
-    padding: clamp(2rem, 4vw, 3.5rem) 1rem clamp(2.5rem, 5vw, 4rem);
-    background: $neutral;
-    margin-top: clamp(1rem, 3vw, 2rem);
+    background: linear-gradient(180deg,
+            rgba($turq, 0.28) 0%,
+            rgba($beige, 0.9) 100%);
+    border-radius: 1.5rem;
+    padding: clamp(2rem, 6vw, 4rem) 1.5rem;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.08);
+    transition: background 0.6s ease;
+
+    &:hover {
+        background: linear-gradient(180deg,
+                rgba($turq, 0.35) 0%,
+                rgba($beige, 1) 100%);
+    }
 }
+
 
 .beliefs__inner {
     width: min(100% - 2rem, 1200px);
@@ -56,6 +67,25 @@
         opacity: 1;
         transform: translateY(0);
     }
+
+    .bcard {
+        transition: transform 0.6s ease, box-shadow 0.6s ease;
+        will-change: transform, box-shadow;
+
+        &:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .bcard__img {
+            transition: transform 0.6s ease;
+        }
+
+        &:hover .bcard__img {
+            transform: scale(1.05);
+        }
+    }
+
 }
 
 /* imagen */

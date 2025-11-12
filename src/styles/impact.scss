@@ -1,169 +1,184 @@
-@use './globals.scss' as *;
+@use "./globals.scss" as *;
 
-/* ----- sección ----- */
+/* ============================
+   EN QUÉ CREEMOS
+   ============================ */
+
 .beliefs {
-    background: linear-gradient(180deg,
-            rgba($turq, 0.28) 0%,
-            rgba($beige, 0.9) 100%);
-    border-radius: 1.5rem;
-    padding: clamp(2rem, 6vw, 4rem) 1.5rem;
-    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.08);
-    transition: background 0.6s ease;
+    padding: 4rem 0 3rem;
+    background: #ecf1f0; // fondo suave
 
-    &:hover {
-        background: linear-gradient(180deg,
-                rgba($turq, 0.35) 0%,
-                rgba($beige, 1) 100%);
+    &__inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding-inline: 1.5rem;
+    }
+
+    /* MISMO TAMAÑO QUE "QUÉ NOS DIFERENCIA" (ajusta si allí usas otro) */
+    &__title {
+        font-size: 3rem; // súbelo/bájalo si tu otro h2 va distinto
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+        color: #2e4049;
+        margin-bottom: 2.5rem;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.75rem;
+
+        @media (max-width: 900px) {
+            grid-template-columns: 1fr;
+        }
     }
 }
 
+/* ============================
+   TARJETAS (VALOR / ESTRATEGIA / CAUSA)
+   ============================ */
 
-.beliefs__inner {
-    width: min(100% - 2rem, 1200px);
-    margin: 0 auto;
-}
-
-.beliefs__title {
-    font-family: $font-heading;
-    font-weight: $fw-bold;
-    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
-    color: $slate;
-    margin: 0 0 clamp(1rem, 2vw, 1.25rem);
-}
-
-/* ----- grid ----- */
-.beliefs__grid {
-    display: grid;
-    gap: clamp(.9rem, 2vw, 1.25rem);
-    grid-template-columns: 1fr;
-
-    @media (min-width: $bp-md) {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* ----- tarjeta con foto ----- */
 .bcard {
     position: relative;
-    display: grid;
-    grid-template-areas: "stack";
-    border-radius: 24px;
     overflow: hidden;
-    min-height: clamp(260px, 36vw, 360px);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, .08);
+    border-radius: 24px;
+    min-height: 320px;
+    display: block;
     text-decoration: none;
+    color: $white;
+    box-shadow: $shadow-soft;
     isolation: isolate;
+    background: #2e4049;
 
+    &__img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.35s ease, opacity 0.35s ease;
+        z-index: 0;
+    }
+
+    &__shade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top,
+                rgba(0, 0, 0, 0.55),
+                rgba(0, 0, 0, 0.15));
+        transition: background 0.3s ease, opacity 0.3s ease;
+        z-index: 1;
+    }
+
+    /* ===== CONTENIDO CENTRADO ===== */
+
+    /* PALABRA CORTA (VALOR/ESTRATEGIA/CAUSA) */
+    &__label {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        text-align: center;
+        font-size: 1.9rem; // grande
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+    }
+
+    /* TEXTO LARGO EN EL HOVER */
+    &__hover {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center; // centrado vertical
+        justify-content: center; // centrado horizontal
+        padding: 2rem;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    &__desc {
+        font-size: 1.05rem; // más grande que antes
+        line-height: 1.6;
+        max-width: 32ch;
+    }
+
+    /* INTERACCIONES */
     &:hover .bcard__img {
-        transform: scale(1.06);
+        transform: scale(1.05);
     }
 
     &:hover .bcard__label {
         opacity: 0;
-        transform: translateY(6px) scale(.98);
     }
 
     &:hover .bcard__hover {
         opacity: 1;
-        transform: translateY(0);
     }
 
-    .bcard {
-        transition: transform 0.6s ease, box-shadow 0.6s ease;
-        will-change: transform, box-shadow;
+    /* COLORES DE HOVER POR TARJETA */
+    &--1:hover .bcard__shade {
+        background: rgba(255, 109, 109, 0.94); // coral
+    }
 
-        &:hover {
-            transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+    &--2:hover .bcard__shade {
+        background: rgba(119, 215, 211, 0.94); // turquesa
+    }
+
+    &--3:hover .bcard__shade {
+        background: rgba(46, 64, 73, 0.96); // azul grisáceo
+    }
+
+    /* MÓVIL */
+    @media (max-width: 768px) {
+        min-height: 260px;
+
+        &__label,
+        &__hover {
+            padding: 1.5rem;
         }
 
-        .bcard__img {
-            transition: transform 0.6s ease;
+        /* opcional: muestra siempre el texto largo en móvil */
+        &__hover {
+            opacity: 1;
         }
 
-        &:hover .bcard__img {
-            transform: scale(1.05);
+        &__shade {
+            background: rgba(0, 0, 0, 0.45);
         }
+
+        /* si quieres que en móvil NO se vea la palabra corta:
+       &__label { display: none; }
+    */
     }
-
 }
 
-/* imagen */
-.bcard__img {
-    grid-area: stack;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scale(1);
-    transition: transform .45s ease;
+/* ============================
+   BOTONES DENTRO DE .beliefs
+   ============================ */
+
+/* Botón Impacto (coral + hover turquesa) */
+.beliefs :is(.btn, .header__cta, .cta__btn, a.btn, a.header__cta, a.cta__btn) {
+    background: $coral !important;
+    color: $white !important;
+    font-weight: 700;
+    border: 0;
+    border-radius: 999px;
+    padding: 14px 26px;
+    box-shadow: $shadow-soft;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 
-/* velo para lectura */
-.bcard__shade {
-    grid-area: stack;
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, .12) 0%, rgba(0, 0, 0, .45) 100%);
-    z-index: 0;
-}
-
-/* palabra corta (por defecto) */
-.bcard__label {
-    grid-area: stack;
-    place-self: center;
-    color: #fff;
-    font-family: $font-heading;
-    font-weight: $fw-bold;
-    letter-spacing: .4px;
-    font-size: clamp(1.4rem, 2.6vw, 2rem);
-    text-shadow: 0 2px 10px rgba(0, 0, 0, .35);
-    transition: opacity .25s ease, transform .25s ease;
-    z-index: 2;
-}
-
-/* overlay con la frase completa */
-.bcard__hover {
-    grid-area: stack;
-    display: grid;
-    place-content: center;
-    text-align: center;
-    padding: 1.2rem;
-    color: #fff;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity .25s ease, transform .25s ease;
-    z-index: 3;
-}
-
-.bcard__desc {
-    margin: 0;
-    font-family: $font-primary;
-    font-size: clamp(1rem, 1.05vw, 1.1rem);
-    line-height: 1.5;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, .25);
-}
-
-/* tinte distinto por tarjeta */
-.bcard--1 .bcard__hover {
-    background: rgba($slate, .82);
-}
-
-.bcard--2 .bcard__hover {
-    background: rgba($turq, .82);
-}
-
-.bcard--3 .bcard__hover {
-    background: rgba($coral, .82);
-}
-
-/* en pantallas táctiles mostramos directamente la frase */
-@media (hover: none) {
-    .bcard__hover {
-        opacity: 1;
-        transform: none;
-    }
-
-    .bcard__label {
-        opacity: 0;
-    }
+.beliefs :is(.btn, .header__cta, .cta__btn, a.btn, a.header__cta, a.cta__btn):hover {
+    background: $turq !important;
+    color: $white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba($turq, 0.3);
 }

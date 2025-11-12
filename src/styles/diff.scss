@@ -1,14 +1,14 @@
-/* === Qué nos diferencia (alineado al bloque “En qué creemos”) === */
+/* === Qué nos diferencia === */
 .diffHero {
-    --ink: #2e4049;
-    --accent: #77d7d3;
-    --active: #ff6d6d;
+    --coral: #ff6d6d;
+    --turq: #77d7d3;
+    --slate: #2e4049;
     --bg: #f1eeec;
     --muted: #6b7a86;
 
     background: var(--bg);
-    color: var(--ink);
-    padding: clamp(48px, 7vw, 96px) 20px;
+    color: var(--slate);
+    padding: clamp(64px, 8vw, 120px) 20px;
 
     &__inner {
         max-width: 1200px;
@@ -29,75 +29,65 @@
         display: grid;
         grid-auto-rows: min-content;
         align-content: start;
-        gap: clamp(10px, 1.6vw, 18px);
+        gap: clamp(14px, 1.8vw, 22px);
     }
 
     &__kicker {
         margin: 0;
-        text-transform: none;
-        color: var(--ink);
+        color: var(--slate);
         font-weight: 700;
-        letter-spacing: -0.01em;
-        font-size: clamp(28px, 2.6vw, 40px);
+        letter-spacing: -.01em;
+        font-size: clamp(2.6rem, 6vw, 3.6rem);
         line-height: 1.1;
-        transform: translateY(0.1em);
     }
 
     &__tab {
         all: unset;
         cursor: pointer;
         display: block;
-        color: var(--accent);
-        font-weight: 600;
+        font-weight: 700;
+        letter-spacing: -.01em;
         text-transform: capitalize;
-        font-size: clamp(36px, 5.2vw, 64px);
+        font-size: clamp(2.2rem, 5vw, 3rem);
         line-height: 1.1;
-        letter-spacing: -0.01em;
-        transition: color .4s ease, transform .25s ease, opacity .3s ease;
-
-        &:hover {
-            color: var(--active);
-            transform: translateX(4px);
-        }
-
-        &.is-active {
-            color: var(--active);
-            transform: translateX(6px);
-        }
+        transition: color .25s ease, transform .2s ease, opacity .2s ease;
     }
 
-    /* Tercer título “Resolvemos” en azul oscuro con mismo grosor */
-    &__tab:nth-child(3) {
-        color: var(--ink);
-        font-weight: 600;
-
-        &:hover {
-            color: var(--active);
-        }
-
-        &.is-active {
-            color: var(--active);
-        }
+    &__tab:nth-of-type(1) {
+        color: var(--coral);
     }
 
+    &__tab:nth-of-type(2) {
+        color: var(--slate);
+    }
+
+    &__tab:nth-of-type(3) {
+        color: var(--turq);
+    }
+
+    &__tab.is-active {
+        transform: translateX(6px);
+    }
+
+    /* DERECHA: centrado vertical respecto al bloque de tabs */
     &__right {
         display: grid;
         align-content: center;
+        /* centro vertical */
+        justify-items: start;
         gap: 16px;
-        min-height: clamp(160px, 22vw, 320px);
+        min-height: clamp(180px, 30vw, 360px);
     }
 
     &__text {
         margin: 0;
         color: var(--muted);
-        font-size: clamp(20px, 2.2vw, 26px);
+        font-size: clamp(1.1rem, 2.2vw, 1.35rem);
         line-height: 1.6;
-        max-width: 48ch;
-        animation: fadeIn .5s ease both;
     }
 
     &__nav {
-        margin-top: 12px;
+        margin-top: 8px;
         display: flex;
         gap: 12px;
     }
@@ -110,26 +100,43 @@
         height: 44px;
         border-radius: 999px;
         background: #ecf1f0;
+        color: var(--slate);
         font-size: 22px;
         cursor: pointer;
-        transition: transform .15s ease, background .15s ease;
-
-        &:hover {
-            transform: translateY(-2px);
-            background: var(--accent);
-            color: #fff;
-        }
+        transition: transform .15s ease, background .15s ease, color .15s ease, box-shadow .15s ease;
     }
 
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
+    /* Flechas según tab activo */
+    &.is-1 .diffHero__arrow {
+        background: color-mix(in srgb, var(--coral) 18%, #fff 82%);
+        color: var(--coral);
+    }
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    &.is-2 .diffHero__arrow {
+        background: color-mix(in srgb, var(--slate) 14%, #fff 86%);
+        color: var(--slate);
+    }
+
+    &.is-3 .diffHero__arrow {
+        background: color-mix(in srgb, var(--turq) 18%, #fff 82%);
+        color: var(--turq);
+    }
+
+    &.is-1 .diffHero__arrow:hover {
+        background: var(--coral);
+        color: #fff;
+        transform: translateY(-2px);
+    }
+
+    &.is-2 .diffHero__arrow:hover {
+        background: var(--slate);
+        color: #fff;
+        transform: translateY(-2px);
+    }
+
+    &.is-3 .diffHero__arrow:hover {
+        background: var(--turq);
+        color: #fff;
+        transform: translateY(-2px);
     }
 }

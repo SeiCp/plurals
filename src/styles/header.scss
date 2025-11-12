@@ -1,22 +1,21 @@
 @use './globals.scss' as *;
 
-/* Wrapper sticky con fondo translúcido */
+/* === HEADER sticky translúcido === */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
   backdrop-filter: saturate(1.1) blur(6px);
-  background: color-mix(in srgb, $beige 85%, $white 15%);
-  border-bottom: 1px solid rgba(0, 0, 0, .06);
+  background: $beige;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* Barra */
+/* === Barra principal === */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .75rem 1.25rem; // antes 0 → ahora hay espacio horizontal
-
+  padding: 0.75rem 1.25rem;
 
   &__brand {
     display: flex;
@@ -24,7 +23,7 @@
     text-decoration: none;
   }
 
-  /* LOGO */
+  /* Logo */
   .header__logo {
     height: 40px;
     width: auto;
@@ -42,14 +41,14 @@
     }
   }
 
-  /* Botón hamburguesa (solo móvil) */
+  /* === Botón hamburguesa (solo móvil) === */
   &__toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: .55rem .8rem;
+    padding: 0.55rem 0.8rem;
     border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, .08);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     background: transparent;
     cursor: pointer;
 
@@ -58,10 +57,10 @@
     }
   }
 
-  /* NAV: visible en tablet/desktop, oculto en móvil */
+  /* === NAV === */
   &__nav {
     display: none;
-    gap: .5rem;
+    gap: 0.5rem;
 
     @media (min-width: $bp-md) {
       display: flex;
@@ -69,7 +68,7 @@
     }
   }
 
-  /* NAV abierto en móvil (overlay) */
+  /* NAV abierto (modo móvil) */
   &__nav[data-open] {
     position: fixed;
     left: 0;
@@ -77,11 +76,11 @@
     top: 60px;
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+    gap: 0.5rem;
     padding: 1rem;
     background: $beige;
     box-shadow: $shadow-soft;
-    border-top: 1px solid rgba(0, 0, 0, .06);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
 
     @media (min-width: $bp-md) {
       position: static;
@@ -92,47 +91,88 @@
     }
   }
 
-  /* LINKS */
+  /* === Enlaces del header === */
   &__link {
     text-decoration: none;
-    padding: .55rem .8rem;
+    padding: 0.55rem 0.8rem;
     border-radius: 12px;
     color: $slate;
     font-weight: 600;
-    transition: color .25s ease, background-color .25s ease, box-shadow .25s ease;
+    transition: color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
 
-    /* hover: turquesa + leve fondo */
     &:hover {
       color: $turq;
-      background: color-mix(in srgb, $turq 12%, $neutral 88%);
+      background: rgba($turq, 0.12);
     }
 
-    /* foco accesible */
     &:focus-visible {
       outline: 0;
-      box-shadow: 0 0 0 2px color-mix(in srgb, $turq 70%, $white 30%);
-      background: color-mix(in srgb, $turq 10%, $neutral 90%);
+      box-shadow: 0 0 0 2px rgba($turq, 0.7);
+      background: rgba($turq, 0.1);
     }
 
-    /* activo: mismo turquesa */
     &.active {
       color: $turq;
-      background: color-mix(in srgb, $turq 16%, $neutral 84%);
+      background: rgba($turq, 0.16);
     }
   }
 
-  /* CTA */
+  /* === BOTONES HERO === */
+
+  /* Coral: "Hablemos" */
   &__cta {
     background: $coral;
     color: $white;
+    border: none;
+    border-radius: 999px;
+    font-weight: 700;
+    padding: 14px 32px;
+    transition: all 0.25s ease;
 
     &:hover {
-      filter: brightness(1.05);
+      background: $turq;
+      color: $white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba($turq, 0.35);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 14px rgba($turq, 0.25);
     }
 
     &:focus-visible {
-      outline: 0;
-      box-shadow: 0 0 0 2px color-mix(in srgb, $coral 70%, $white 30%);
+      outline: 3px solid rgba($turq, 0.55);
+      outline-offset: 3px;
+    }
+  }
+
+  /* Contorno blanco: "Descubre lo que hacemos" */
+  &__cta--outline {
+    background: transparent;
+    color: $white;
+    font-weight: 700;
+    border: 1.5px solid rgba($white, 0.8);
+    border-radius: 999px;
+    padding: 14px 32px;
+    transition: all 0.25s ease;
+
+    &:hover {
+      background: rgba($white, 0.95);
+      color: $turq;
+      border-color: rgba($white, 1);
+      box-shadow: 0 10px 26px rgba($turq, 0.35);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 12px rgba($turq, 0.25);
+    }
+
+    &:focus-visible {
+      outline: 3px solid rgba($turq, 0.55);
+      outline-offset: 3px;
     }
   }
 }

@@ -11,28 +11,20 @@ $header-h: 64px;
 
 .hero {
     position: relative;
-
-    /* ocupa todo el alto visible menos el header */
     min-height: calc(100vh - $header-h);
-
-    /* fondo + encuadre */
     background: url('../assets/ManosHero.png') 65% center / cover no-repeat;
-
-    /* centrado del contenido */
     display: flex;
     align-items: center;
     justify-content: center;
-
-    /* hueco interno para no chocar con el header */
     padding-bottom: clamp(24px, 4vh, 56px);
 
     &__overlay {
         position: absolute;
         inset: 0;
         background: linear-gradient(0deg,
-                rgba(46, 64, 73, .52) 0%,
-                rgba(46, 64, 73, .46) 45%,
-                rgba(46, 64, 73, .38) 100%);
+                rgba(46, 64, 73, 0.52) 0%,
+                rgba(46, 64, 73, 0.46) 45%,
+                rgba(46, 64, 73, 0.38) 100%);
     }
 
     &__content {
@@ -42,20 +34,25 @@ $header-h: 64px;
         text-align: center;
         width: min(100% - 2rem, 820px);
         padding: 2rem 1rem;
-        transform: translateY(260px);
+
+        /* centrado vertical real */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform: none;
+        /* eliminamos el desplazamiento */
+        min-height: 100%;
     }
 
-    /* título: un pelín más grande + más aire con las CTAs */
+
     h1 {
         font-family: $font-primary;
         font-weight: 400;
         line-height: 1.05;
         letter-spacing: .2px;
-        /* antes: clamp(2rem, 5vw, 3.1rem) */
         font-size: clamp(2.3rem, 6.2vw, 3.6rem);
-        /* ↑ tamaño */
         margin: 0 0 clamp(1.4rem, 2.6vw, 2.2rem);
-        /* ↑ separación con botones */
         text-wrap: balance;
     }
 
@@ -66,88 +63,96 @@ $header-h: 64px;
         opacity: .97;
     }
 
-    /* contenedor de CTAs: más separación y gap mayor */
     &__actions {
         display: inline-flex;
         gap: 1rem;
-        /* antes .8rem */
         flex-wrap: wrap;
         justify-content: center;
         margin-top: clamp(1rem, 2vw, 1.8rem);
-        /* aire extra respecto al h1 */
     }
 
-    .btn--ghost {
-        background: transparent;
-        color: $white;
-        border: 1px solid rgba(255, 255, 255, .65);
-
-        &:hover {
-            border-color: rgba(255, 255, 255, .9);
-        }
-    }
-
-    /* --- BOTONES: más grandes y SIN subrayado --- */
-    /* quita subrayado a cualquier enlace dentro del hero */
+    /* === BOTONES HERO === */
     a,
     a:hover,
     a:focus {
         text-decoration: none;
     }
 
-    /* base para ambos botones */
     .btn {
-        text-decoration: none;
-        /* sin subrayado */
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: .4rem;
-        /* antes: clamp(.95rem, 1.4vw, 1.15rem) clamp(1.35rem, 2.2vw, 1.8rem) */
         padding: clamp(1.05rem, 1.6vw, 1.25rem) clamp(1.6rem, 2.6vw, 2rem);
-        /* ↑ tamaño */
         font-family: $font-primary;
         font-weight: 700;
-        /* antes: clamp(1rem, 1.2vw, 1.15rem) */
         font-size: clamp(1.05rem, 1.3vw, 1.2rem);
-        /* ↑ tamaño */
         line-height: 1;
         border-radius: 18px;
-        /* antes 16px */
         border: 1.5px solid transparent;
         color: $white;
         box-shadow: $shadow-soft;
         cursor: pointer;
+        transition: background-color .25s ease, color .25s ease,
+            border-color .25s ease, transform .15s ease, box-shadow .25s ease;
+        will-change: transform;
     }
 
-    /* primario coral */
-    .btn--primary {
+    /* PRIMARIO (coral) */
+    /* ↑ Más especificidad para ganar a cualquier regla previa */
+    .btn.btn--primary {
         background: $coral;
-        color: #fff;
+        color: $white;
         border-color: transparent;
-
-        &:hover {
-            filter: brightness(.96);
-        }
-
-        &:active {
-            transform: translateY(1px);
-        }
     }
 
-    /* secundario (ghost) — hereda tamaño de .btn */
-    .btn--ghost {
+    .btn.btn--primary:hover {
+        background: $turq;
+        /* coral -> turquesa en hover */
+        color: $white;
+        border-color: transparent;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgba($turq, .35);
+    }
+
+    .btn.btn--primary:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 14px rgba($turq, .25);
+    }
+
+    .btn.btn--primary:focus-visible {
+        outline: 0;
+        box-shadow: 0 0 0 3px rgba($turq, .55);
+    }
+
+    /* SECUNDARIO (ghost) */
+    .btn.btn--ghost {
         background: transparent;
         color: $white;
-        border: 1.5px solid rgba(255, 255, 255, .7);
-
-        &:hover {
-            border-color: rgba(255, 255, 255, .9);
-            background: rgba(255, 255, 255, .08);
-        }
+        border: 1.5px solid rgba($white, .75);
     }
 
-    /* --- responsive bien anidado (ojo a las llaves) --- */
+    .btn.btn--ghost:hover {
+        background: rgba($white, .95);
+        color: $turq;
+        border-color: rgba($white, 1);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 26px rgba($turq, .35);
+    }
+
+    .btn.btn--ghost:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 12px rgba($turq, .25);
+    }
+
+    .btn.btn--ghost:focus-visible {
+        outline: 0;
+        box-shadow: 0 0 0 3px rgba($turq, .55);
+        background: rgba($white, .9);
+        color: $turq;
+    }
+
+    /* responsive */
     @media (max-width: $bp-md) {
         background-position: 70% center;
     }
@@ -155,18 +160,15 @@ $header-h: 64px;
     @media (max-width: $bp-sm) {
         background-position: 72% center;
 
-        /* mantiene el título un poco más grande en móvil */
         h1 {
             font-size: clamp(2.05rem, 7.5vw, 2.6rem);
         }
 
-        /* botones grandecitos en móvil */
         .btn {
             padding: .95rem 1.25rem;
             font-size: 1.05rem;
         }
 
-        /* y un poco de margen extra respecto al título */
         &__actions {
             margin-top: 1.25rem;
         }

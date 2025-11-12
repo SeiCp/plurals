@@ -1,10 +1,5 @@
 @use "./variables.scss" as v;
 
-/* Scroll suave para #org y #empresa */
-html {
-    scroll-behavior: smooth;
-}
-
 /* ===== Sección ===== */
 .how {
     --maxw: 1200px;
@@ -13,26 +8,35 @@ html {
     padding: clamp(12px, 2.4vw, 22px) 0;
 }
 
-/* Franja de fondo simple (misma que te gustó) */
-.how--tint {
-    background: #ECF1F0;
-    /* secundario de tu paleta */
+/* Franja de fondo SOLO para la parrilla */
+.how__frame {
+    background: v.$mist;
+    /* #ECF1F0 */
     border-radius: 24px;
     padding: clamp(16px, 3vw, 28px);
     box-shadow: 0 8px 28px rgba(0, 0, 0, .04);
 }
 
 /* ===== Títulos ===== */
-/* No definimos tipografía aquí para que el H2 herede EXACTO como en “En qué creemos”. */
 .how__title {
-    margin: 0 0 .35rem;
+    margin: 0;
+    color: v.$slate;
+    font-family: v.$font-secondary;
+    /* Montserrat */
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    font-size: clamp(2.6rem, 6vw, 3.6rem);
+    line-height: 1.1;
 }
 
-/* Subtítulo */
 .how__lead {
-    color: color-mix(in srgb, v.$slate 70%, #fff 30%);
-    margin: 0 0 clamp(16px, 2.6vw, 26px);
-    font-size: clamp(1rem, 2.2vw, 1.15rem);
+    color: color-mix(in srgb, v.$slate 78%, #fff 22%);
+    margin: clamp(.4rem, 1vw, .75rem) 0 clamp(1.1rem, 2.6vw, 1.8rem);
+    font-family: v.$font-secondary;
+    /* Montserrat */
+    font-weight: 500;
+    font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+    line-height: 1.55;
 }
 
 /* ===== Grid ===== */
@@ -50,7 +54,7 @@ html {
     text-decoration: none;
 }
 
-/* ===== Tile / Imagen ===== */
+/* ===== Tarjeta / Imagen ===== */
 .how__media {
     margin: 0;
     position: relative;
@@ -83,14 +87,15 @@ html {
     position: absolute;
     inset: auto 0 0 0;
     padding: clamp(14px, 3vw, 22px);
-    font-weight: 900;
-    font-family: v.$font-primary;
+    font-family: v.$font-secondary;
+    /* Montserrat */
+    font-weight: 800;
     color: #fff;
     background: linear-gradient(180deg,
             rgba(0, 0, 0, 0) 0%,
-            rgba(0, 0, 0, .5) 60%,
-            rgba(0, 0, 0, .7) 100%);
-    font-size: clamp(1.15rem, 2.8vw, 1.6rem);
+            rgba(0, 0, 0, .50) 60%,
+            rgba(0, 0, 0, .70) 100%);
+    font-size: clamp(1.3rem, 2.8vw, 1.8rem);
     line-height: 1.1;
     text-shadow: 0 2px 10px rgba(0, 0, 0, .35);
     letter-spacing: .2px;

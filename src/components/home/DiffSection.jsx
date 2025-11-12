@@ -15,13 +15,14 @@ export default function DiffSection() {
   const next = () => setIx((ix + 1) % items.length);
 
   return (
-    <section className="diffHero" aria-labelledby="diff-title">
+    <section className={`diffHero is-${ix + 1}`} aria-labelledby="diff-title">
       <div className="diffHero__inner">
-        <div className="diffHero__grid">
-          {/* IZQUIERDA: título + tabs en la MISMA LÍNEA (alineados en baseline) */}
-          <div className="diffHero__left" role="tablist" aria-label="Qué nos diferencia">
-            <h2 id="diff-title" className="diffHero__kicker">Qué nos diferencia</h2>
+        {/* Fila 1: título */}
+        <h2 id="diff-title" className="diffHero__kicker">Qué nos diferencia</h2>
 
+        {/* Fila 2: izquierda (tabs) + derecha (texto centrado) */}
+        <div className="diffHero__grid">
+          <div className="diffHero__left" role="tablist" aria-label="Qué nos diferencia">
             {items.map((it, i) => (
               <button
                 key={it.title}
@@ -37,7 +38,6 @@ export default function DiffSection() {
             ))}
           </div>
 
-          {/* DERECHA: solo la frase */}
           <div
             className="diffHero__right"
             role="tabpanel"
@@ -56,6 +56,8 @@ export default function DiffSection() {
     </section>
   );
 }
+
+
 
 
 

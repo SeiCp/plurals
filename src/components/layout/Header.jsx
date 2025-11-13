@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "../../styles/header.scss";
-import logo from "../../assets/PLURALS_Logoinicio.png";
+import logo from "../../assets/plurals-logo-cropped.png"; // logo recortado
+
 
 export default function Header() {
   const [open, setOpen] = useState(false);

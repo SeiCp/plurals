@@ -6,21 +6,20 @@
 
 .beliefs {
     padding: 4rem 0 3rem;
-    background: #ecf1f0; // fondo suave
+    background: $mist;
 
     &__inner {
-        max-width: 1120px;
+        max-width: $max-w;
         margin: 0 auto;
         padding-inline: 1.5rem;
     }
 
-    /* MISMO TAMAÑO QUE "QUÉ NOS DIFERENCIA" (ajusta si allí usas otro) */
     &__title {
-        font-size: 3rem; // súbelo/bájalo si tu otro h2 va distinto
+        font-size: 3rem;
         line-height: 1.1;
         letter-spacing: -0.02em;
         font-weight: 700;
-        color: #2e4049;
+        color: $slate;
         margin-bottom: 2.5rem;
     }
 
@@ -36,7 +35,7 @@
 }
 
 /* ============================
-   TARJETAS (VALOR / ESTRATEGIA / CAUSA)
+   TARJETAS VALOR / ESTRATEGIA / CAUSA
    ============================ */
 
 .bcard {
@@ -49,31 +48,31 @@
     color: $white;
     box-shadow: $shadow-soft;
     isolation: isolate;
-    background: #2e4049;
+    background: $slate;
 
+    /* IMAGEN */
     &__img {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.35s ease, opacity 0.35s ease;
+        transition: transform 0.35s ease;
         z-index: 0;
     }
 
+    /* SOMBRA */
     &__shade {
         position: absolute;
         inset: 0;
         background: linear-gradient(to top,
                 rgba(0, 0, 0, 0.55),
                 rgba(0, 0, 0, 0.15));
-        transition: background 0.3s ease, opacity 0.3s ease;
+        transition: background 0.3s ease;
         z-index: 1;
     }
 
-    /* ===== CONTENIDO CENTRADO ===== */
-
-    /* PALABRA CORTA (VALOR/ESTRATEGIA/CAUSA) */
+    /* PALABRA (visible por defecto) */
     &__label {
         position: absolute;
         inset: 0;
@@ -83,21 +82,21 @@
         justify-content: center;
         padding: 2rem;
         text-align: center;
-        font-size: 1.9rem; // grande
+        font-size: 1.9rem;
         font-weight: 700;
         letter-spacing: 0.02em;
         opacity: 1;
         transition: opacity 0.3s ease;
     }
 
-    /* TEXTO LARGO EN EL HOVER */
+    /* TEXTO LARGO (oculto por defecto) */
     &__hover {
         position: absolute;
         inset: 0;
         z-index: 2;
         display: flex;
-        align-items: center; // centrado vertical
-        justify-content: center; // centrado horizontal
+        align-items: center;
+        justify-content: center;
         padding: 2rem;
         text-align: center;
         opacity: 0;
@@ -105,7 +104,7 @@
     }
 
     &__desc {
-        font-size: 1.05rem; // más grande que antes
+        font-size: 1.05rem;
         line-height: 1.6;
         max-width: 32ch;
     }
@@ -123,21 +122,23 @@
         opacity: 1;
     }
 
-    /* COLORES DE HOVER POR TARJETA */
+    /* COLORES DE HOVER */
     &--1:hover .bcard__shade {
-        background: rgba(255, 109, 109, 0.94); // coral
+        background: rgba($coral, 0.94);
     }
 
     &--2:hover .bcard__shade {
-        background: rgba(119, 215, 211, 0.94); // turquesa
+        background: rgba($turq, 0.94);
     }
 
     &--3:hover .bcard__shade {
-        background: rgba(46, 64, 73, 0.96); // azul grisáceo
+        background: rgba($slate, 0.96);
     }
 
-    /* MÓVIL */
-    @media (max-width: 768px) {
+    /* ============================
+     MÓVIL
+     ============================ */
+    @media (max-width: $bp-md) {
         min-height: 260px;
 
         &__label,
@@ -145,26 +146,38 @@
             padding: 1.5rem;
         }
 
-        /* opcional: muestra siempre el texto largo en móvil */
+        &__desc {
+            font-size: 0.98rem;
+        }
+
+        /* ——— COMPORTAMIENTO CORRECTO EN MÓVIL ——— */
+
+        /* Por defecto SOLO se ve la palabra */
         &__hover {
+            opacity: 0; // antes estaba en 1 → ahora corregido
+        }
+
+        /* La sombra un pelín más fuerte para leer bien */
+        &__shade {
+            background: linear-gradient(to top,
+                    rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0.2));
+        }
+
+        /* Cuando el usuario TOCA la card → mostrar frase */
+        &:active .bcard__label,
+        &:focus-visible .bcard__label {
+            opacity: 0;
+        }
+
+        &:active .bcard__hover,
+        &:focus-visible .bcard__hover {
             opacity: 1;
         }
-
-        &__shade {
-            background: rgba(0, 0, 0, 0.45);
-        }
-
-        /* si quieres que en móvil NO se vea la palabra corta:
-       &__label { display: none; }
-    */
     }
 }
 
-/* ============================
-   BOTONES DENTRO DE .beliefs
-   ============================ */
-
-/* Botón Impacto (coral + hover turquesa) */
+/* Botones dentro de beliefs */
 .beliefs :is(.btn, .header__cta, .cta__btn, a.btn, a.header__cta, a.cta__btn) {
     background: $coral !important;
     color: $white !important;
@@ -178,7 +191,6 @@
 
 .beliefs :is(.btn, .header__cta, .cta__btn, a.btn, a.header__cta, a.cta__btn):hover {
     background: $turq !important;
-    color: $white !important;
     transform: translateY(-2px);
     box-shadow: 0 10px 26px rgba($turq, 0.3);
 }

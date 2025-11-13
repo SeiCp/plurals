@@ -1,6 +1,6 @@
 // src/pages/ContactPage.jsx
 import "../styles/contact.scss";
-import contactPhoto from "../assets/contact.jpg";
+import contactPhoto from "../assets/contact-form.jpg";  // 👈 nuevo nombre
 
 export default function ContactPage() {
   return (

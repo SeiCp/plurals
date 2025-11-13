@@ -1,8 +1,6 @@
 // src/pages/ContactPage.jsx
-import { useState } from "react";
 import "../styles/contact.scss";
-import contactPhoto from "../assets/contact.jpg";   // 👈 nuevo
-
+import contactPhoto from "../assets/contact.jpg";
 
 export default function ContactPage() {
   return (
@@ -14,9 +12,9 @@ export default function ContactPage() {
         </header>
 
         <div className="contact__grid">
-        <figure className="contact__photo" aria-hidden="true">
-        <img src={contactPhoto} alt="" loading="lazy" />
-        </figure>
+          <figure className="contact__photo" aria-hidden="true">
+            <img src={contactPhoto} alt="" loading="lazy" />
+          </figure>
 
           <div className="contact__formWrap">
             {/* Netlify Forms */}
@@ -34,7 +32,8 @@ export default function ContactPage() {
               {/* Honeypot */}
               <p className="visually-hidden" aria-hidden="true">
                 <label>
-                  Si eres humano, deja este campo vacío: <input name="bot-field" />
+                  Si eres humano, deja este campo vacío:{" "}
+                  <input name="bot-field" />
                 </label>
               </p>
 
@@ -84,5 +83,6 @@ export default function ContactPage() {
     </section>
   );
 }
+
 
 

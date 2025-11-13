@@ -1,5 +1,8 @@
 // src/pages/ContactPage.jsx
+import { useState } from "react";
 import "../styles/contact.scss";
+import contactPhoto from "../assets/contact.jpg";   // 👈 nuevo
+
 
 export default function ContactPage() {
   return (
@@ -11,7 +14,9 @@ export default function ContactPage() {
         </header>
 
         <div className="contact__grid">
-          <figure className="contact__photo" aria-hidden="true" />
+        <figure className="contact__photo" aria-hidden="true">
+        <img src={contactPhoto} alt="" loading="lazy" />
+        </figure>
 
           <div className="contact__formWrap">
             {/* Netlify Forms */}

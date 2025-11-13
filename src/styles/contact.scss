@@ -60,19 +60,28 @@
     max-width: 560px;
     aspect-ratio: 4 / 3;
     border-radius: v.$radius-lg;
-    background: url('../assets/contact.jpg') center / cover no-repeat;
     box-shadow: v.$shadow-soft;
     position: relative;
     overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
 
     &::after {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, rgba(v.$slate, .06) 0%, rgba(v.$slate, .16) 100%);
+        background: linear-gradient(180deg,
+                rgba(v.$slate, .06) 0%,
+                rgba(v.$slate, .16) 100%);
         pointer-events: none;
     }
 }
+
 
 /* Tarjeta del formulario */
 .contact__formWrap {

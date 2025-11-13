@@ -1,8 +1,9 @@
-@use './globals.scss' as *;
+@use "./variables.scss" as v;
+@use "./globals.scss" as *;
 
 .contact {
     padding: clamp(2.5rem, 4vw, 5rem) 1.25rem;
-    background: $neutral;
+    background: v.$neutral;
 }
 
 .contact__wrap {
@@ -18,23 +19,23 @@
         font-family: $font-heading;
         font-weight: $fw-bold;
         font-size: clamp(1.9rem, 3.2vw, 2.5rem);
-        color: $slate;
+        color: v.$slate;
         margin: 0 0 .5rem;
     }
 
     p {
         max-width: 70ch;
         margin: 0 auto;
-        color: rgba($slate, .85);
+        color: rgba(v.$slate, .85);
     }
 
     .contact__mailto {
-        color: $coral;
+        color: v.$coral;
         text-decoration: none;
-        border-bottom: 1px solid rgba($coral, .35);
+        border-bottom: 1px solid rgba(v.$coral, .35);
 
         &:hover {
-            border-color: rgba($coral, .7);
+            border-color: rgba(v.$coral, .7);
         }
     }
 }
@@ -48,7 +49,7 @@
     align-items: start;
     margin-top: clamp(.25rem, 1vw, .75rem);
 
-    @media (min-width: $bp-lg) {
+    @media (min-width: v.$bp-lg) {
         grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
     }
 }
@@ -58,9 +59,9 @@
     width: 100%;
     max-width: 560px;
     aspect-ratio: 4 / 3;
-    border-radius: $radius-lg;
+    border-radius: v.$radius-lg;
     background: url('../assets/contact.jpg') center / cover no-repeat;
-    box-shadow: $shadow-soft;
+    box-shadow: v.$shadow-soft;
     position: relative;
     overflow: hidden;
 
@@ -68,7 +69,7 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, rgba($slate, .06) 0%, rgba($slate, .16) 100%);
+        background: linear-gradient(180deg, rgba(v.$slate, .06) 0%, rgba(v.$slate, .16) 100%);
         pointer-events: none;
     }
 }
@@ -77,10 +78,10 @@
 .contact__formWrap {
     width: 100%;
     background: #fff;
-    border: 1px solid rgba($slate, .08);
-    border-radius: $radius-lg;
+    border: 1px solid rgba(v.$slate, .08);
+    border-radius: v.$radius-lg;
     padding: clamp(1rem, 2.4vw, 1.6rem);
-    box-shadow: $shadow-soft;
+    box-shadow: v.$shadow-soft;
     position: relative;
     z-index: 0;
 }
@@ -89,19 +90,19 @@
 .contact__alert {
     margin-bottom: .85rem;
     padding: .75rem .9rem;
-    border-radius: $radius-md;
+    border-radius: v.$radius-lg;
     font-weight: $fw-semibold;
 
     &--ok {
-        background: rgba($turq, .15);
-        color: $slate;
-        border: 1px solid rgba($turq, .4);
+        background: rgba(v.$turq, .15);
+        color: v.$slate;
+        border: 1px solid rgba(v.$turq, .4);
     }
 
     &--error {
-        background: rgba($coral, .15);
-        color: $slate;
-        border: 1px solid rgba($coral, .45);
+        background: rgba(v.$coral, .15);
+        color: v.$slate;
+        border: 1px solid rgba(v.$coral, .45);
     }
 }
 
@@ -114,7 +115,7 @@
     display: grid;
     gap: .9rem;
 
-    @media (min-width: $bp-sm) {
+    @media (min-width: v.$bp-sm) {
         grid-template-columns: 1fr 1fr;
     }
 }
@@ -126,7 +127,7 @@
 label {
     display: grid;
     gap: .4rem;
-    color: $slate;
+    color: v.$slate;
     font-weight: $fw-semibold;
 }
 
@@ -135,16 +136,16 @@ input[type="email"],
 textarea {
     width: 100%;
     font: inherit;
-    color: $slate;
-    background: $neutral;
-    border: 1px solid rgba($slate, .15);
-    border-radius: $radius-md;
+    color: v.$slate;
+    background: v.$neutral;
+    border: 1px solid rgba(v.$slate, .15);
+    border-radius: v.$radius-lg;
     padding: .8rem .9rem;
     outline: none;
 
     &:focus {
-        border-color: rgba($coral, .6);
-        box-shadow: 0 0 0 3px rgba($coral, .18);
+        border-color: rgba(v.$coral, .6);
+        box-shadow: 0 0 0 3px rgba(v.$coral, .18);
         background: #fff;
     }
 }
@@ -201,11 +202,11 @@ textarea {
     margin: -1px;
 }
 
-/* ===== BOTÓN SUBMIT (coral con hover turquesa) ===== */
+/* ===== BOTÓN SUBMIT ===== */
 .contact .btn--coral,
 .contact button[type="submit"],
 .contact input[type="submit"] {
-    background: #ff6d6d;
+    background: v.$coral;
     color: #fff;
     font-weight: 700;
     border: none;
@@ -219,7 +220,7 @@ textarea {
 .contact .btn--coral:hover,
 .contact button[type="submit"]:hover,
 .contact input[type="submit"]:hover {
-    background: #77d7d3;
+    background: v.$turq;
     transform: translateY(-3px);
     box-shadow: 0 12px 32px rgba(119, 215, 211, 0.45);
 }
@@ -238,10 +239,10 @@ textarea {
     outline-offset: 3px;
 }
 
-/* ===== BOTÓN EMAIL (turquesa suave en reposo + texto azul oscuro; hover blanco + texto turquesa) ===== */
+/* ===== BOTÓN EMAIL ===== */
 .contact .contact__actions .btn--ghost-line {
     background: #a8e4e1 !important;
-    color: #2e4049 !important;
+    color: v.$slate !important;
     font-weight: 700;
     border: 1.5px solid rgba(46, 64, 73, .12);
     border-radius: 999px;
@@ -256,7 +257,7 @@ textarea {
 
 .contact .contact__actions .btn--ghost-line:hover {
     background: #fff !important;
-    color: #77d7d3 !important;
+    color: v.$turq !important;
     box-shadow: 0 10px 28px rgba(119, 215, 211, .45);
     transform: translateY(-2px);
 }
@@ -269,4 +270,70 @@ textarea {
 .contact .contact__actions .btn--ghost-line:focus-visible {
     outline: 3px solid rgba(119, 215, 211, .55);
     outline-offset: 3px;
+}
+
+/* === Página de agradecimiento === */
+
+.contact--thanks {
+    padding-block: clamp(48px, 8vw, 80px);
+}
+
+.contact__grid--thanks {
+    align-items: stretch; // ← las dos columnas tendrán la misma altura
+    gap: clamp(22px, 4vw, 40px);
+}
+
+
+.contact__photo--thanks {
+    border-radius: 26px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.16);
+    background-image: url("../assets/ChicasEspalda.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: clamp(220px, 32vw, 320px);
+}
+
+.contact__formWrap--thanks {
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: clamp(220px, 32vw, 320px); // ← misma altura que la foto
+}
+
+
+.contact__header--thanks h1 {
+    font-family: v.$font-secondary;
+    font-size: clamp(2.2rem, 4vw, 2.8rem);
+    margin-bottom: 0.75rem;
+}
+
+.contact__header--thanks p {
+    color: rgba(v.$slate, 0.9);
+    line-height: 1.6;
+}
+
+.contact__actions--thanks {
+    margin-top: clamp(18px, 3vw, 26px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center; // ← CENTRA HORIZONTALMENTE
+    text-align: center; // ← asegura centrado del texto
+}
+
+
+@media (max-width: 720px) {
+    .contact__grid--thanks {
+        grid-template-columns: 1fr;
+    }
+
+    .contact__photo--thanks {
+        order: -1;
+    }
+
+    .contact__actions--thanks {
+        flex-direction: column;
+        align-items: center;
+    }
 }
